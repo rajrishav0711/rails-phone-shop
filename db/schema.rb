@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20201226041206) do
     t.index ["manufacturer", "model"], name: "index_phones_on_manufacturer_and_model", unique: true
   end
 
+  create_table "prices", force: :cascade do |t|
+    t.integer "variant_id"
+    t.decimal "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["variant_id"], name: "index_prices_on_variant_id"
+  end
+
   create_table "variants", force: :cascade do |t|
     t.integer "phone_id"
     t.string "storage"
