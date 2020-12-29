@@ -1,0 +1,33 @@
+<% content_for :title, "Add Phone" %>
+
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5>Add Phone <small>Please </small></h5>
+  </div>
+  <div class="ibox-content">
+    <div class="row">
+      <%= form_for [:admin, @phone] do |f| %>
+        <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Phone Info</h3>
+          <div class="form-group">
+            <label>Manufacturer</label>
+            <%= f.text_field :manufacturer, :placeholder=>"Enter Manufacturer", :class=>"form-control", :required=>'' %>
+          </div>
+          <div class="form-group">
+            <label>Model</label>
+            <%= f.text_field :model, :placeholder=>"Enter model number", :class=>"form-control", :required=>'' %>
+          </div>
+          <div class="form-group">
+            <label>Manufacture Year</label>
+            <%= f.text_field :manufacture_year, :placeholder=>"Manufacture Year", :class=>"form-control", :required=>'' %>
+          </div>
+        </div>
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="hr-line-dashed"></div>
+          <%= f.submit :class=>"btn btn-sm btn-primary pull-right m-t-n-xs" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

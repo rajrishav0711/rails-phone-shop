@@ -1,14 +1,63 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>RailsPhoneShopCandidateRajrishav0711C5b53815de362f0693425cb26cf0c2cc</title>
-    <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <body>
+  <title><%= yield(:title) %> | Phone Shop</title>
+  <%= csrf_meta_tags %>
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  <%= stylesheet_link_tag    'application', :media => "all" %>
+</head>
+
+<body class="fixed-nav fixed-nav-basic"> <!-- min sidemenu: mini-navbar-->
+<div id="wrapper">
+  <nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+      <ul class="nav metismenu" id="side-menu">
+        <li class="landing_link">
+          <%= link_to admin_path do %>
+            <i class="fa fa-th-large"></i> <span class="nav-label">Admin Dashboard</span> <span class="label label-warning pull-right">HOME</span></a>
+          <% end %>
+        </li>
+        <li class="active">
+          <h1><span class="nav-label">Manage Phones</span> <span class="fa arrow"></span></h1>
+          <ul class="nav nav-second-level">
+            <li><%= link_to "All Phones", admin_phones_path %></li>
+            <li class=""><%= link_to "Add Phone", new_admin_phone_path %></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="wrapper wrapper-content">
+
+    <% if notice %>
+      <div class="alert alert-info">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Notice!</strong> <%= notice %>
+      </div>
+    <% end %>
+
+    <% if alert %>
+      <div class="alert alert-danger">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Alert!</strong> <%= alert %>
+      </div>
+    <% end %>
+
     <%= yield %>
-  </body>
+
+  </div>
+</div>
+</div>
+
+<!-- Mainly scripts -->
+<%= javascript_include_tag 'application' %>
+
+</body>
 </html>
+
