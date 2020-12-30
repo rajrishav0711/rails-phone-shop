@@ -43,6 +43,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'pry-inline', '~> 1.0.4'
   gem 'rspec-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
