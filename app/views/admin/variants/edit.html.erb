@@ -1,0 +1,33 @@
+<% content_for :title, "Edit Variant" %>
+
+<div class="ibox float-e-margins">
+  <div class="ibox-title">
+    <h5>Edit Variant <small>Please </small></h5>
+  </div>
+  <div class="ibox-content">
+    <div class="row">
+      <%= form_for [:admin, @phone, @variant] do |f| %>
+        <div class="col-sm-6 b-r"><h3 class="m-t-none m-b">Variant Info</h3>
+          <div class="form-group">
+            <label>Color</label>
+            <%= f.text_field :color, :placeholder=>"Enter color", :class=>"form-control", :required=>'' %>
+          </div>
+          <div class="form-group">
+            <label>Storage</label>
+            <%= f.text_field :storage, :placeholder=>"Enter storage", :class=>"form-control", :required=>'' %>
+          </div>
+          <div class="form-group">
+            <label>Count On Hand</label>
+            <%= f.text_field :count_on_hand, :placeholder=>"Enter count on hand", :class=>"form-control", :required=>'' %>
+          </div>
+        </div>
+        </div>
+        </div>
+        <div class="col-sm-12">
+          <div class="hr-line-dashed"></div>
+          <%= f.submit :class=>"btn btn-sm btn-primary pull-right m-t-n-xs" %>
+        </div>
+      <% end %>
+      </div>
+</div>
+</div>

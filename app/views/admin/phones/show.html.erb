@@ -13,12 +13,14 @@
             <tr>
               <th>Name</th>
               <th>Manufacture Year</th>
+              <th>Variants</th>
             </tr>
             </thead>
             <tbody>
             <tr class="">
               <td><%= @phone.name %></td>
               <td><%= @phone.manufacture_year %></td>
+              <td><%= link_to pluralize(@phone.variants.size, 'variant'), admin_phone_variants_path(@phone) %></td>
             </tr>
             </tbody>
           </table>

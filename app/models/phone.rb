@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Phone < ApplicationRecord
-  has_many :variants
+  has_many :variants, dependent: :destroy
   has_many :prices, through: :variants
 
   validates :manufacturer, :model, presence: true

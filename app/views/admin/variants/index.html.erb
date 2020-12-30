@@ -1,0 +1,11 @@
+<p><%= link_to "Back to Phone", [:admin, @phone] %></p>
+
+<% if @phone.variants.empty? %>
+  <p>Currently no variants.</p>
+<% else %>
+  <div id="variants">
+    <%= render :partial => @phone.variants %>
+  </div>
+<% end %>
+
+<p><%= link_to "New Variant", new_admin_phone_variant_path(@phone) %></p>

@@ -1,0 +1,9 @@
+<div class="variant">
+  <strong><%= link_to h(variant.name) %></strong>
+  <em>on <%= variant.created_at.strftime('%b %d, %Y at %H:%M') %></em>
+  <%= simple_format h(variant.count_on_hand) + ' units in stock' %>
+  <p>
+    <%= link_to "Edit", edit_admin_variant_path(variant) %> |
+    <%= link_to "Destroy", admin_variant_path(variant), :method => :delete, :confirm => "Are you sure?" %>
+  </p>
+</div>
