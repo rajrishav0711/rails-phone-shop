@@ -2,7 +2,7 @@
 
 class Variant < ApplicationRecord
   belongs_to :phone
-  has_one :price
+  has_one :price, dependent: :destroy
 
   validates :storage, :color, :count_on_hand, presence: true
   validates :count_on_hand, numericality: { greater_than_or_equal_to: 0 }

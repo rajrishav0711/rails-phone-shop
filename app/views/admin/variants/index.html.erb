@@ -1,11 +1,47 @@
-<p><%= link_to "Back to Phone", [:admin, @phone] %></p>
+<% content_for :title, "#{@phone.name} Variants" %>
 
-<% if @phone.variants.empty? %>
-  <p>Currently no variants.</p>
-<% else %>
-  <div id="variants">
-    <%= render :partial => @phone.variants %>
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Inventory / <%= @phone.name %></p>
+    <h1>Variants</h1>
+    <p class="muted"><%= pluralize(@variants.size, "variant") %> registered.</p>
   </div>
-<% end %>
+  <%= link_to "Add Variant", new_admin_phone_variant_path(@phone), class: "button button-primary" %>
+</section>
 
-<p><%= link_to "New Variant", new_admin_phone_variant_path(@phone) %></p>
+<div class="card">
+  <% if @variants.any? %>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>Storage</th>
+            <th>Color</th>
+            <th>Stock</th>
+            <th class="actions-column">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @variants.each do |variant| %>
+            <tr>
+              <td><%= variant.storage %></td>
+              <td><%= variant.color %></td>
+              <td><%= variant.count_on_hand %></td>
+              <td class="actions">
+                <%= link_to "Edit", edit_admin_variant_path(variant) %>
+                <%= button_to "Delete", admin_variant_path(variant), method: :delete,
+                      class: "link-button danger" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  <% else %>
+    <div class="empty-state">
+      <h2>No variants yet</h2>
+      <p>Add a storage/color combination for this phone.</p>
+      <%= link_to "Add Variant", new_admin_phone_variant_path(@phone), class: "button button-primary" %>
+    </div>
+  <% end %>
+</div>

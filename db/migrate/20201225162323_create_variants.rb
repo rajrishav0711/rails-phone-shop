@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreateVariants < ActiveRecord::Migration[5.1]
+class CreateVariants < ActiveRecord::Migration[8.1]
   def change
     create_table :variants do |t|
       t.references :phone, foreign_key: true

@@ -5,67 +5,62 @@ module Admin
     before_action :load_variant, only: %i[show edit update destroy]
     before_action :load_phone, only: %i[index new create]
 
-    # GET /admin/phones/1/variants
     def index
-      @variants = @phone.variants
+      @variants = @phone.variants.order(:storage, :color)
     end
 
-    # GET /admin/variants/1
     def show; end
 
-    # GET /admin/phones/1/variants/new
     def new
       @variant = @phone.variants.build
     end
 
-    # POST /admin/phones/1/variants
     def create
       @variant = @phone.variants.build(variant_params)
 
       if @variant.save
-        redirect_to admin_phone_path(@variant.phone_id), notice: 'Variant was successfully created.'
+        redirect_to admin_phone_path(@phone), notice: "Variant was successfully created."
       else
-        flash.now[:alert] = 'Error! Please try again'
-        render action: 'new'
+        flash.now[:alert] = "Please correct the errors below."
+        render :new, status: :unprocessable_entity
       end
     end
 
-    # GET /admin/variants/:1/edit
-    def edit; end
+    def edit
+      @phone = @variant.phone
+    end
 
-    # PATCH /admin/variants/1
     def update
+      @phone = @variant.phone
+
       if @variant.update(variant_params)
-        redirect_to admin_phone_path(@variant.phone_id), notice: 'Variant was successfully updated.'
+        redirect_to admin_phone_path(@phone), notice: "Variant was successfully updated."
       else
-        flash.now[:alert] = 'Error! Please try again'
-        render action: 'edit'
+        flash.now[:alert] = "Please correct the errors below."
+        render :edit, status: :unprocessable_entity
       end
     end
 
-    # DELETE admin/variants/1
     def destroy
+      phone = @variant.phone
+
       if @variant.destroy
-        redirect_to admin_phone_path(@variant.phone_id), notice: 'Variant was successfully deleted.'
+        redirect_to admin_phone_path(phone), notice: "Variant was successfully deleted."
       else
-        redirect_to admin_phone_path(@variant.phone_id), alert: 'Error! Please try again'
+        redirect_to admin_phone_path(phone), alert: "Unable to delete the variant."
       end
     end
 
     private
 
-    # Only allow a trusted parameter "white list" through.
-    # @returns [ActionController::Parameters]
     def variant_params
-      params.require(:variant).permit(:phone_id, :color, :storage, :count_on_hand)
+      params.require(:variant).permit(:color, :storage, :count_on_hand)
     end
 
-    # @returns [Variant]
     def load_variant
       @variant = Variant.find(params[:id])
     end
 
-    # @returns [Phone]
     def load_phone
       @phone = Phone.find(params[:phone_id])
     end

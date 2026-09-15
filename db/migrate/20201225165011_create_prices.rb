@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CreatePrices < ActiveRecord::Migration[5.1]
+class CreatePrices < ActiveRecord::Migration[8.1]
   def change
     create_table :prices do |t|
       t.references :variant, foreign_key: true

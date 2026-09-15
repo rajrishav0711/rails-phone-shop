@@ -1,22 +1,21 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Phone, type: :model do
-  subject(:phone) { create(:phone, manufacturer: 'Apple') }
+  subject(:phone) { build(:phone, manufacturer: "Apple") }
 
-  it { validate_presence_of :manufacturer }
-  it { validate_presence_of :model }
-  it { validate_presence_of :competitor_price }
+  it { is_expected.to validate_presence_of(:manufacturer) }
+  it { is_expected.to validate_presence_of(:model) }
   it { is_expected.to validate_uniqueness_of(:model).scoped_to(:manufacturer) }
 
-  describe 'associations' do
-    it { is_expected.to have_many :variants }
+  describe "associations" do
+    it { is_expected.to have_many(:variants).dependent(:destroy) }
   end
 
-  describe '#name' do
-    it 'returns name of the phone' do
-      expect(subject.name).to eq 'Apple - Iphone 11'
+  describe "#name" do
+    it "returns the phone name" do
+      expect(phone.name).to eq("Apple - iPhone 11")
     end
   end
 end

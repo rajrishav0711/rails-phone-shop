@@ -1,0 +1,16 @@
+<% content_for :title, "Dashboard" %>
+
+<section class="page-header">
+  <div>
+    <p class="eyebrow">Administration</p>
+    <h1>Phone Shop</h1>
+    <p class="muted">Manage the shop's phone inventory.</p>
+  </div>
+  <%= link_to "Add Phone", new_admin_phone_path, class: "button button-primary" %>
+</section>
+
+<div class="card dashboard-card">
+  <h2>Inventory</h2>
+  <p>Register phones and manage their storage, color, and stock variants.</p>
+  <%= link_to "View all phones", admin_phones_path, class: "button button-secondary" %>
+</div>
