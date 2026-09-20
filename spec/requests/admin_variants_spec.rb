@@ -24,10 +24,11 @@ RSpec.describe "Admin::Variants", type: :request do
     it "creates a variant for the phone" do
       expect {
         post admin_phone_variants_path(phone), params: { variant: valid_attributes }
-      }.to change(Variant, :count).by(1)
+      }.to change(Variant, :count).by(1).and change(Inventory, :count).by(1)
 
       variant = Variant.order(:id).last
       expect(variant.phone).to eq(phone)
+      expect(variant.count_on_hand).to eq(100)
       expect(response).to redirect_to(admin_phone_path(phone))
     end
 
@@ -85,7 +86,7 @@ RSpec.describe "Admin::Variants", type: :request do
 
       expect {
         delete admin_variant_path(variant)
-      }.to change(Variant, :count).by(-1)
+      }.to change(Variant, :count).by(-1).and change(Inventory, :count).by(-1)
 
       expect(response).to redirect_to(admin_phone_path(phone))
     end
