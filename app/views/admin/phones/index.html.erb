@@ -28,9 +28,9 @@
               <td><%= phone.manufacture_year || "-" %></td>
               <td><%= phone.variants.size %></td>
               <td class="actions">
-                <%= link_to "Edit", edit_admin_phone_path(phone) %>
+                <%= link_to "Edit", edit_admin_phone_path(phone), class: "button button-secondary button-sm" %>
                 <%= button_to "Delete", admin_phone_path(phone), method: :delete,
-                      class: "link-button danger" %>
+                      class: "button button-danger button-sm" %>
               </td>
             </tr>
           <% end %>
