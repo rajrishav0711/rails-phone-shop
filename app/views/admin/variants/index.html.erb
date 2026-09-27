@@ -28,9 +28,9 @@
               <td><%= variant.color %></td>
               <td><%= variant.count_on_hand %></td>
               <td class="actions">
-                <%= link_to "Edit", edit_admin_variant_path(variant) %>
+                <%= link_to "Edit", edit_admin_variant_path(variant), class: "button button-secondary button-sm" %>
                 <%= button_to "Delete", admin_variant_path(variant), method: :delete,
-                      class: "link-button danger" %>
+                      class: "button button-danger button-sm" %>
               </td>
             </tr>
           <% end %>
